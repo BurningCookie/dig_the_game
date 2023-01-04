@@ -5,12 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
+    public float distancetoground;
     private float gravity = 1f;
     public CharacterController crcon;
     public Transform groundcheck;
     public GameObject raycaster;
+    public Rigidbody rb;
     public Animator picAnimator;
-    public float distancetoground;
+    public Animator cameraAnimator;
     public LayerMask groundLayerMask;
     Vector3 velocity;
     bool isGrounded;
@@ -29,10 +31,11 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             
-            /*if (picAnimator.GetBool("mine") != true)
+            if (picAnimator.GetBool("mine") != true)
             {
                 picAnimator.SetBool("mine", true);
-            }*/
+            }
+
             if (Physics.Raycast(raycaster.transform.position, raycaster.transform.forward, out Orehit, 4))
             {
                 //Debug.Log(Orehit.collider.gameObject.name);
@@ -48,10 +51,10 @@ public class Player : MonoBehaviour
         else
         {
             
-            /*if (picAnimator.GetBool("mine") != false)
+            if (picAnimator.GetBool("mine") != false)
             {
                 picAnimator.SetBool("mine", false);
-            }*/ 
+            } 
         }
 
         isGrounded = Physics.CheckSphere(groundcheck.position, distancetoground, groundLayerMask);
@@ -68,5 +71,17 @@ public class Player : MonoBehaviour
         crcon.Move(move * speed * Time.deltaTime);
         velocity.y -= gravity * Time.deltaTime;
         crcon.Move(velocity);
+
+        //Moving Animation
+
+        if(Input.GetKey("w") == true || Input.GetKey("s") == true || Input.GetKey("a") == true || Input.GetKey("d") == true)
+        {
+            cameraAnimator.SetBool("run", true);
+        }
+        else
+        {
+            cameraAnimator.SetBool("run", false);
+        }
+
     }
 }
