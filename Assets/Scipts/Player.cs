@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
 
     private Inventory inventory;
 
+    bool pressed = false;
+    public float timer = 0;
+
     private void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -30,6 +33,12 @@ public class Player : MonoBehaviour
         //Ore-mining
         if (Input.GetButton("Fire1"))
         {
+
+            if (!pressed)
+            {
+                pressed = true;
+                timer = 5;
+            }
             
             if (picAnimator.GetBool("mine") != true)
             {
@@ -42,15 +51,23 @@ public class Player : MonoBehaviour
                 GameObject ore = Orehit.collider.gameObject;
                 if (ore.tag == "Ore")
                 {
-                    OreData d = ore.GetComponent<OreData>();
-                    inventory.Add(d.GetId(), d.GetDropAmount());
-                    Destroy(ore);
+                    timer -= Time.deltaTime;
+                    if (timer <= 0)
+                    {
+                        OreData d = ore.GetComponent<OreData>();
+                        inventory.Add(d.GetId(), d.GetDropAmount());
+                        Destroy(ore);
+                    }                  
+                }
+                else
+                {
+                    timer = 5;
                 }
             }
         }
         else
         {
-            
+            pressed = false;
             if (picAnimator.GetBool("mine") != false)
             {
                 picAnimator.SetBool("mine", false);
