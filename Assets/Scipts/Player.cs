@@ -90,6 +90,11 @@ public class Player : MonoBehaviour
                         {
                             minecart.AddItemsToMinecart(i, inventory.items[i]);
                             inventory.Remove(i, inventory.items[i]);
+                            if (inventory.items[i] == minecart.GetCapacityLeft())
+                            {
+                                minecart.SendOff();
+                                break;
+                            }
                         }
                         else
                         {

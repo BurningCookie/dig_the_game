@@ -5,7 +5,9 @@ using UnityEngine;
 public class Minecart : MonoBehaviour
 {
     InventoryWithoutDisplay inventory;
+    public Container container;
     [SerializeField] int maxCapacity = 10;
+    public Animator animator;
 
     private void Start()
     {
@@ -14,10 +16,7 @@ public class Minecart : MonoBehaviour
 
     public void AddItemsToMinecart(int id, int count)
     {
-        if (GetFilledCapacity() + count !>= maxCapacity)
-        {
             inventory.Add(id, count);
-        }
     }
 
     int GetFilledCapacity()
@@ -42,5 +41,17 @@ public class Minecart : MonoBehaviour
         {
             Debug.Log(inventory.items[i].ToString() + " items with id " + i.ToString());
         }
+        animator.Play("minecart");
+        Invoke("Offload", 10f);
+    }
+
+    void Offload()
+    {
+        for (int i = 0; i < inventory.items.Count; i++)
+        {
+            container.AddItemsToContainer(i, inventory.items[i]);
+            inventory.Remove(i, inventory.items[i]);
+        }
+        animator.Play("minecartReturn");
     }
 }
