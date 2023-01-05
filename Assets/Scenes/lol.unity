@@ -390,7 +390,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417529798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59, y: 2, z: -65.11662}
+  m_LocalPosition: {x: 0.59, y: 2, z: 84.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3117,6 +3117,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1063653230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2282415596152088376, guid: 10fb98a1bd32c3046a6c34bdc56b8871, type: 3}
+  m_PrefabInstance: {fileID: 5082126767011744344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1189032484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3575,7 +3580,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.27
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4226,6 +4231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: minecartOb
       objectReference: {fileID: 0}
+    - target: {fileID: 2282415596152088376, guid: 10fb98a1bd32c3046a6c34bdc56b8871, type: 3}
+      propertyPath: m_TagString
+      value: minecart
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10fb98a1bd32c3046a6c34bdc56b8871, type: 3}
 --- !u!4 &5935818072923961306 stripped
@@ -4233,6 +4242,46 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1506194903284366722, guid: 10fb98a1bd32c3046a6c34bdc56b8871, type: 3}
   m_PrefabInstance: {fileID: 5082126767011744344}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &5935818072923961307
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063653230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: ebf7eecde4e366345aec24fc2790f6e8, type: 3}
+--- !u!114 &5935818072923961308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063653230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611e035aea64ab74098285b5cc796524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: 00000000
+--- !u!114 &5935818072923961309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063653230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754b9da5be8e59c4ca569fb384d0adc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCapacity: 120
 --- !u!1001 &6090028212492825386
 PrefabInstance:
   m_ObjectHideFlags: 0

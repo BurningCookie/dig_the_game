@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
             if (!pressed)
             {
                 pressed = true;
-                timer = 5;
+                timer = 1;
             }
             
             if (picAnimator.GetBool("mine") != true)
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    timer = 5;
+                    timer = 1;
                 }
             }
         }
@@ -72,6 +72,43 @@ public class Player : MonoBehaviour
             {
                 picAnimator.SetBool("mine", false);
             } 
+        }
+
+        //Interactions
+        if (Input.GetKeyDown("e"))
+        {
+            RaycastHit h = new RaycastHit();
+            if (Physics.Raycast(raycaster.transform.position, raycaster.transform.forward, out h, 4))
+            {
+                //Offload items to minecart
+                if (h.collider.gameObject.tag == "minecart")
+                {
+                    Minecart minecart = h.collider.gameObject.GetComponent<Minecart>();
+                    for (int i = 0; i<inventory.items.Count; i++)
+                    {
+                        if (inventory.items[i] <= minecart.GetCapacityLeft())
+                        {
+                            minecart.AddItemsToMinecart(i, inventory.items[i]);
+                            inventory.Remove(i, inventory.items[i]);
+                        }
+                        else
+                        {
+                            if (minecart.GetCapacityLeft() != 0)
+                            {
+                                inventory.Remove(i, minecart.GetCapacityLeft());
+                                minecart.AddItemsToMinecart(i, minecart.GetCapacityLeft());
+                                minecart.SendOff();
+                                break;
+                            }
+                            else
+                            {
+                                minecart.SendOff();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         isGrounded = Physics.CheckSphere(groundcheck.position, distancetoground, groundLayerMask);
