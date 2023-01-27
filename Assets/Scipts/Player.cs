@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float distancetoground;
-    private float gravity = 1f;
+    public float gravity = 0.1f;
+    public float jumpheight = 10f;
     public CharacterController crcon;
     public Transform groundcheck;
     public GameObject raycaster;
@@ -120,7 +121,12 @@ public class Player : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = 0f;
+        }
+
+        if (Input.GetKey("space") && isGrounded)
+        {
+            velocity.y = jumpheight;
         }
 
         float x = Input.GetAxis("Horizontal");
