@@ -131,6 +131,16 @@ public class Player : MonoBehaviour
         velocity.y -= gravity * Time.deltaTime;
         crcon.Move(velocity);
 
+        //Push Button
+        if (Input.GetMouseButton(1))
+        {
+            if (Physics.Raycast(raycaster.transform.position, raycaster.transform.forward, 4, 20))
+                    {
+                        
+                    }
+        }
+        
+
         //Moving Animation
 
         if(Input.GetKey("w") == true || Input.GetKey("s") == true || Input.GetKey("a") == true || Input.GetKey("d") == true)
